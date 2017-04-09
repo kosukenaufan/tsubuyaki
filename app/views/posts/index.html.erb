@@ -1,0 +1,19 @@
+<div class= "container">
+  <% @posts.each do |post| %>
+    <%= link_to(post) do %>
+      <div class = "col-sm-3">
+        <div class = "posts">
+          <div class = "image">
+            <%= image_tag(post.image.url, class: "img-responsive") unless post.image.blank? %>
+          </div>
+          <div class = "description">
+            <ul class = "list-unstyled">
+              <li><%= post.title %></li>
+              <li>¥ <%= post.price %></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>

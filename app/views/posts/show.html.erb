@@ -1,0 +1,15 @@
+<div class="container">
+  <div class = "col-sm-6">
+    <%= image_tag @post.image.url, class: "img-responsive" %>
+  </div>
+  <div class= "col-sm-6">
+    <div>
+      <h2><%= @post.title %>
+      <p>¥ <%= @post.price %>
+      <p><%= @post.content %>
+    </div>
+    <% if @post.user == current_user %>
+        <%= link_to "編集", edit_post_path(@post) %>
+    <% end %>
+  </div>
+</div>
