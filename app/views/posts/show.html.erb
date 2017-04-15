@@ -11,5 +11,6 @@
     <% if @post.user == current_user %>
         <%= link_to "編集", edit_post_path(@post) %>
     <% end %>
+    <%= link_to "戻る", root_url %>
   </div>
 </div>
