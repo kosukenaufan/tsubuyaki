@@ -1,7 +1,7 @@
 class UserMailer < ApplicationMailer
   def activation_needed_email(user)
     @user = user
-    @url = "hhttp://market-portal.herokuapp.com/users/#{user.activation_token}/activate"
+    @url = "http://market-portal.herokuapp.com/users/#{user.activation_token}/activate"
     mail(:to => user.email,
          :subject => "ようこそ、makepoへ")
   end
