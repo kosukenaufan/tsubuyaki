@@ -1,8 +1,17 @@
 #registrations-new
-  .col-xs-6.right-content
+  .col-sm-6.col-sm-push-6.left-content
+    %h1
+      = link_to "makepo", posts_path
+    %p.ex
+      このサイトは、ネットショッピングのポータルサイトです！
+      - if notice
+        %p
+          .alert.alert-info= notice
+
+  .col-sm-6.col-sm-pull-6.right-content
     = form_for @user, url: registrations_path, method: :post do |f|
       %h2
-        マーケットポータル　会員登録
+        makepo　会員登録
       - @user.errors.each do |attr, message|
         .alert.alert-danger= message
       .form-group
@@ -20,14 +29,3 @@
         = f.submit "登録する", class: "btn"
         = link_to "ログインする", new_sessions_path, class: "login pull-right"
         .clear
-
-  .col-xs-6.left-content
-    %h1
-      = link_to "Market Portal", posts_path
-    %p.ex
-      このサイトは、ネット通販のポータルサイトです！
-    %p.by
-      開発者: 山本紘輔　デザイン: リザル・ナウファン　企画: ティ
-      - if notice
-        %p
-          .alert.alert-info= notice
