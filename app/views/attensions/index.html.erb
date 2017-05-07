@@ -1,0 +1,22 @@
+<div class="container">
+  <div class= "grid">
+    <% @post.each do |post| %>
+      <div class="grid-item col-sm-4 col-md-3 col-xs-6">
+      <%= link_to(post) do %>
+        <div class = "posts">
+          <div class = "image">
+            <%= image_tag(post.image[0].url, class: "img-responsive") unless post.image.blank? %>
+          </div>
+          <div class = "description">
+            <ul class = "list-unstyled">
+              <li class = "title"><%= post.title %></li>
+              <li class = "price">¥ <%= post.price %></li>
+              <li class = "price"><%= post.updated_at %></li>
+            </ul>
+          </div>
+        </div>
+      <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

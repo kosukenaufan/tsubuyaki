@@ -1,19 +1,37 @@
 <div class= "container">
+  <div class = "col-sm-12 search">
+    <%= form_tag(posts_path, method: "get") do %>
+    <%= label_tag :title, "検索" %><%= text_field_tag :title, params[:title] %>
+    <%= submit_tag "検索" %>
+    <% end %>
+  </div>
+  <div class="collapse navbar-collapse" id="myNavbar">
+    <ul class="nav navbar-nav">
+      <li><%= link_to "すべて", posts_path %>
+      <% @genres.each do |genre| %>
+        <li><%= link_to genre.genre, posts_path(:genre=>genre.genre)%></li>
+      <% end %>
+
+    </ul>
+  </div>
+  <div class="grid">
   <% @posts.each do |post| %>
+    <div class="grid-item col-sm-4 col-md-3 col-xs-6">
     <%= link_to(post) do %>
-      <div class = "col-sm-3">
-        <div class = "posts">
-          <div class = "image">
-            <%= image_tag(post.image.url, class: "img-responsive") unless post.image.blank? %>
-          </div>
-          <div class = "description">
-            <ul class = "list-unstyled">
-              <li><%= post.title %></li>
-              <li>¥ <%= post.price %></li>
-            </ul>
-          </div>
+      <div class = "posts">
+        <div class = "image">
+          <%= image_tag(post.image[0].url, class: "img-responsive") unless post.image.blank? %>
+        </div>
+        <div class = "description">
+          <ul class = "list-unstyled">
+            <li class = "title"><%= post.title %></li>
+            <li class = "price">¥ <%= post.price %></li>
+            <li class = "genre"> <%= post.genre %></li>
+          </ul>
         </div>
       </div>
     <% end %>
+    </div>
   <% end %>
+  </div>
 </div>

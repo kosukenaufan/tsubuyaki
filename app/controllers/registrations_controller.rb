@@ -5,19 +5,18 @@ class RegistrationsController < ApplicationController
   end
 
   def create
-  	     @user = User.new(params_user)
+    @user = User.new(params_user)
+      if @user.save
+        login(@user.email, @user.password)
+        redirect_to posts_url
+      else
+        render :new
+      end
+    end
 
-  	     if @user.save
-           login(@user.email, @user.password)
-  	       redirect_to posts_url
-  	     else
-  	       render :new
-  	     end
-  	   end
+    private
 
-  	   private
-
-  	   def params_user
-  	     params.require(:user).permit(:name, :email, :password, :password_confirmation)
-  	   end
+      def params_user
+        params.require(:user).permit(:name, :email, :password, :password_confirmation)
+      end
 end

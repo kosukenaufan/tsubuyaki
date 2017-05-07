@@ -2,7 +2,7 @@
   .col-xs-6.right-content
     = form_for @user, url: registrations_path, method: :post do |f|
       %h2
-        商品を登録する
+        マーケットポータル　会員登録
       - @user.errors.each do |attr, message|
         .alert.alert-danger= message
       .form-group
@@ -22,7 +22,8 @@
         .clear
 
   .col-xs-6.left-content
-    %h1 Market Portal
+    %h1
+      = link_to "Market Portal", posts_path
     %p.ex
       このサイトは、ネット通販のポータルサイトです！
     %p.by

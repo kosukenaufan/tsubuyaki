@@ -1,16 +1,82 @@
 <div class="container">
   <div class = "col-sm-6">
-    <%= image_tag @post.image.url, class: "img-responsive" %>
+    <div class="row">
+      <%= link_to (image_tag @post.image[0].url, class: "img-responsive img placeholder"), @post.link %>
+    </div>
+    <div class="row thumbnails">
+    <% @post.image.each do |image| %>
+      <div class="col-sm-3 col-xs-4">
+        <%= link_to (image_tag image.url, class: "img-responsive thumbnails"), image.url %>
+      </div>
+    <% end %>
+    </div>
   </div>
   <div class= "col-sm-6">
-    <div>
-      <h2><%= @post.title %>
-      <p>¥ <%= @post.price %>
-      <p><%= @post.content %>
-    </div>
-    <% if @post.user == current_user %>
-        <%= link_to "編集", edit_post_path(@post) %>
+    <h2 class="show-title"><%= link_to @post.title, @post.link  %>
+    <p>アプリ・サイト名：<%= @post.channel %>
+    <p class="show-price">¥ <%= @post.price %>
+    <p class="show-content"><%= @post.content %>
+
+    <ul class="list-inline">
+      <% if @post.user == current_user %>
+        <p>あと<span class="counter"><%= 5 - @post.counter %></span>回PRできます!</p>
+        <li class= "edit"><h4><%= link_to "編集", edit_post_path(@post) %></h4></li>
+      <% end %>
+      <li class= "edit"><h4><%= link_to "戻る", :back  %></h4></li>
+    </ul>
+  </div>
+  <div class= "attenssions ">
+  <% if @post.user == current_user %>
+    <% if @post.counter < 5 %>
+      <%= form_for(@post, url:{controller:'posts', action: 'update'}) do |f| %>
+        <%= f.submit "商品をPRする", name: "promote", class:"PR center-block"%>
+      <% end %>
     <% end %>
-    <%= link_to "戻る", root_url %>
+  <% end %>
+  </div>
+
+  <div class = "col-sm-12 comp">
+    <h3 class = "h3-cas">同じ商品</h3>
+    <div class= "grid">
+    <% @same.each do |post| %>
+      <div class="grid-item col-sm-4 col-md-3 col-xs-6">
+      <%= link_to(post) do %>
+        <div class = "posts">
+          <div class = "image">
+            <%= image_tag(post.image[0].url, class: "img-responsive") unless post.image.blank? %>
+          </div>
+          <div class = "description">
+            <ul class = "list-unstyled">
+              <li class = "title"><%= post.title %></li>
+              <li class = "price">¥ <%= post.price %></li>
+            </ul>
+          </div>
+        </div>
+      <% end %>
+      </div>
+    <% end %>
+    </div>
+  </div>
+  <div class = "col-sm-12 comp">
+    <h3 class = "h3-simi">類似商品</h3>
+    <div class= "grid">
+    <% @similar.each do |post| %>
+      <div class="grid-item col-sm-4 col-md-3 col-xs-6">
+      <%= link_to(post) do %>
+        <div class = "posts">
+          <div class = "image">
+            <%= image_tag(post.image[0].url, class: "img-responsive") unless post.image.blank? %>
+          </div>
+          <div class = "description">
+            <ul class = "list-unstyled">
+              <li class = "title"><%= post.title %></li>
+              <li class = "price">¥ <%= post.price %></li>
+            </ul>
+          </div>
+        </div>
+      <% end %>
+      </div>
+    <% end %>
+    </div>
   </div>
 </div>

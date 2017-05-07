@@ -14,6 +14,6 @@
           = f.label :password, "パスワード：6文字以上", class: "control-label"
           = f.password_field :password, class: "form-control"
           = f.submit "ログイン", class: "btn btn-success"
-        = link_to root_path, class: "pull-right signup" do
+        = link_to registrations_new_path, class: "pull-right signup" do
           会員登録する
         .clear

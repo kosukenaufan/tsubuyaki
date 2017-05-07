@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Market Portal</title>
     <%= csrf_meta_tags %>
 
@@ -11,7 +14,27 @@
 
 <body id="application">
   <%= render partial: "layouts/header" %>
+  <div class = "col-sm-8 notice">
+  <p id="notice"><%= flash[:notice] %></p>
+  <p id="alert"><%= flash[:alert] %></p>
+  </div>
    	   <%= yield %>
-   	 </div>
+  <%= render partial: "layouts/footer" %>
+
+  <script>
+    $(document).ready(function () {
+      $('.grid').imagesLoaded(function () {
+        $('.grid').masonry({
+          // options
+          itemSelector: '.grid-item',
+        });
+      });
+    });
+
+    $(".thumbnails").simpleGal();
+
+
+  </script>
+
   </body>
 </html>

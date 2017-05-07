@@ -1,0 +1,18 @@
+おめでとうございます、<%= @user.name %>
+makepoへの本登録が完了しました。
+あなたが登録したアドレスは<%= @user.email %>です。
+
+ログインするには下記のページへアクセスしてください。
+<%= link_to @url , @url %>
+
+どうぞ、よろしくお願いいたします。
+
+Congratz, <%= @user.email %>
+===============================================
+
+You have successfully activated your example.com account,
+your email is: <%= @user.email %>.
+
+To login to the site, just follow this link: <%= link_to @url , @url %>.
+
+Thanks for joining and have a great day!

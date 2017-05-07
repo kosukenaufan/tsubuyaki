@@ -1,6 +1,9 @@
-<div class="container">
-  <h1>Editing post</h1>
+<div class="editing-post">
+  <h1>商品を編集する</h1>
   <%= render 'form' %>
-  <%= link_to 'Show', @post %>
-  <%= link_to 'back', post_path %>
+  <ul class="list-inline confirmation">
+    <li><%= link_to '確認', @post %></li>
+    <li>/<li>
+    <li><%= link_to '戻る', post_path %></li>
+  </ul>
 </div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170325073253) do
+ActiveRecord::Schema.define(version: 20170505061436) do
 
   create_table "genres", force: :cascade do |t|
     t.string   "genre"
@@ -21,8 +21,8 @@ ActiveRecord::Schema.define(version: 20170325073253) do
   create_table "posts", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.string   "title"
     t.string   "genre"
     t.string   "location"
@@ -30,20 +30,28 @@ ActiveRecord::Schema.define(version: 20170325073253) do
     t.string   "link"
     t.string   "image"
     t.integer  "user_id_id"
+    t.string   "channel"
+    t.boolean  "status",     default: false
+    t.integer  "counter",    default: 0
     t.index ["created_at"], name: "index_posts_on_created_at"
     t.index ["user_id"], name: "index_posts_on_user_id"
     t.index ["user_id_id"], name: "index_posts_on_user_id_id"
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",            null: false
+    t.string   "email",                       null: false
     t.string   "crypted_password"
     t.string   "salt"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.string   "name"
     t.string   "screen_name"
     t.string   "bio"
+    t.boolean  "evaluation"
+    t.string   "activation_state"
+    t.string   "activation_token"
+    t.datetime "activation_token_expires_at"
+    t.index ["activation_token"], name: "index_users_on_activation_token"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

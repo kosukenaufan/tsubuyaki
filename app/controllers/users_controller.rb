@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_filter :require_login
+  before_action :require_login, only:[:destroy]
+  #skip_before_filter :require_login, only: [:index, :new, :create, :activate]
   # GET /users
   # GET /users.json
   def index
@@ -54,10 +55,20 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
+    @user = User.find params[:id]
     @user.destroy
     respond_to do |format|
       format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def activate
+    if (@user = User.load_from_activation_token(params[:id]))
+      @user.activate!
+      redirect_to(new_sessions_path, notice => '登録しました！')
+    else
+      not_authenticated
     end
   end
 
@@ -69,6 +80,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.fetch(:user, {})
+      params.requre(:user).permit(:email, :password, :pasword_confirmation)
     end
 end

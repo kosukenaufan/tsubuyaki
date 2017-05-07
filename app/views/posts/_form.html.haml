@@ -1,4 +1,4 @@
-= form_for @post do |f|
+= form_for@post, html: { multipart: true} do |f|
   - if @post.errors.any?
     #error_explanation
       %h2= "#{pluralize(@post.errors.count, "error")} prohibited this post from being saved:"
@@ -8,26 +8,28 @@
 
   .field
     = f.label :商品名
-    = f.text_field :title
+    = f.text_field :title, class: "form-control"
   .field
-    = f.label :アプリ名
-    = collection_select(:genre, :genre, Genre.all, :genre, :genre, promp: true)
+    = f.label '媒体名:フリル、ラクマ、楽天など'
+    = f.text_field :channel, class: "form-control"
+  .field
+    = f.label '媒体リンク(宣伝したい商品のリンク)'
+    = f.text_field :link, class: "form-control"
   .field
     = f.label :商品のジャンル
-    = collection_select(:genre, :genre, Genre.all, :genre, :genre, promp: true)
+    = collection_select(:post, :genre, Genre.all, :genre, :genre, prompt: true)
   .field
     = f.label :値段
-    = f.text_field :price
+    = f.text_field :price, class: "form-control"
   .field
     = f.label :発送元地域
-    = f.text_field :location
+    = f.text_field :location, class: "form-control"
   .field
     = f.label :商品詳細
-    = f.text_area :content
+    = f.text_area :content, class: "form-control"
 
   .field
     = f.label :商品の画像
-    = f.file_field :image
-
-  .actions
-    = f.submit '商品を登録'
+    = f.file_field :image, multiple: true
+  .action
+    = f.submit '商品を登録',class:"btn"

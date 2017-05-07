@@ -1,0 +1,21 @@
+<footer>
+<hr>
+  <div class= "container">
+    <div class="row text-center">
+      <p>Copyright makepo 2017
+        <% if Time.current.year != 2017 %>
+          - <%= Time.current.year%>
+        <% end %></p>
+    </div>
+    <div class="row text-center">
+      <ul class='list-inline'>
+        <li><%= link_to "makepoとは", static_pages_about_path %></li>
+        <li><%= link_to "プライバシーポリシー", static_pages_privacy_path %></li>
+        <li><%= link_to "利用規約", static_pages_agreement_path %></li>
+        <li><%= link_to "運営組織概要", "http://teaandsoup-p.com/teaandsoupkoshiki.html" %></li>
+      </ul>
+    </div>
+  <br>
+  <br>
+  </div>
+</footer>

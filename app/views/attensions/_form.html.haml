@@ -1,0 +1,10 @@
+= form_for @attension do |f|
+  - if @attension.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@attension.errors.count, "error")} prohibited this attension from being saved:"
+      %ul
+        - @attension.errors.full_messages.each do |msg|
+          %li= msg
+
+  .actions
+    = f.submit 'Save'

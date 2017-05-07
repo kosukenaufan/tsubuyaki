@@ -1,0 +1,18 @@
+<%= @user.name %>さん、makepoへようこそ！
+
+仮登録が完了しました。
+あなたが登録したアドレスは<%= @user.email %>です。
+
+下記のページへアクセスすると、本登録が完了します。
+<%= link_to @url , @url %>
+
+どうぞ、よろしくお願いいたします。
+
+Welcome to example.com, <%= @user.email %>
+
+You have successfully signed up to example.com,
+your email is: <%= @user.email %>.
+
+To login to the site, just follow this link: <%= link_to @url , @url %>.
+
+Thanks for joining and have a great day!

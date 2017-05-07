@@ -1,0 +1,26 @@
+<div id="users-content">
+  <div class="col-sm-12  list-group-item user-list text-center">
+    <div class="user-info">
+        <%# flash[:notice] %>
+        <%= @user.name %>
+          <%# render_user_screen_name(@user) %>
+      <div class="bio">
+        <%= @user.bio %>
+      <% if @user == current_user %>
+        <%= link_to "削除する",@user ,method: :delete ,date:{confim:"本当に削除しますか？"} %>
+      <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+  <%# 以後はコメント.user-info
+    - if notice
+      .alert.alert-info= notice
+    %span.user-name
+      = render_user_screen_name(@user)
+    %span.user-id
+      @#{@user.name}
+    .bio
+      = @user.bio
+    - if @user == current_user
+    %link_to "削除する", user , method::delete, date:{confirm:"本当に削除しますか？"}-%>
