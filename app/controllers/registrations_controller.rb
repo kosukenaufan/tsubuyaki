@@ -8,7 +8,7 @@ class RegistrationsController < ApplicationController
     @user = User.new(params_user)
       if @user.save
         login(@user.email, @user.password)
-        redirect_to posts_url
+        redirect_to posts_url ,notice: '仮登録が完了しました。登録メールアドレスをご確認下さい!'
       else
         render :new
       end

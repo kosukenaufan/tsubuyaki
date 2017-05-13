@@ -1,7 +1,7 @@
 <div class= "container">
   <div class = "col-sm-12 search">
     <%= form_tag(posts_path, method: "get") do %>
-    <%= label_tag :title, "検索" %><%= text_field_tag :title, params[:title] %>
+    <%= text_field_tag :title, params[:title] %>
     <%= submit_tag "検索" %>
     <% end %>
   </div>
