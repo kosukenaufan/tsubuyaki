@@ -15,7 +15,7 @@
     <h2 class="show-title"><%= link_to @post.title, @post.link  %>
     <p>アプリ・サイト名：<%= @post.channel %>
     <p class="show-price">¥ <%= @post.price %>
-    <p class="show-content"><%= @post.content %>
+    <div class="show-content"><%= simple_format(@post.content) %> </div>
 
     <ul class="list-inline">
       <% if @post.user == current_user %>
