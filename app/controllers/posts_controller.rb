@@ -6,6 +6,7 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
     @posts = Post.all.order('updated_at DESC')
+    @post = Post.all.order('updated_at DESC').select { |x| x["counter"] > 0 }
     if params[:title].present?
       @posts = @posts.get_by_title params[:title]
     elsif params[:genre] then
